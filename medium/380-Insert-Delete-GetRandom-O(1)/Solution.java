@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -12,35 +11,47 @@ import java.util.Random;
 
 class RandomizedSet {
 
-    List<Integer> list;
+    HashMap<Integer,Integer> hashMap;
+    ArrayList<Integer> arrayList;
+    Random random;
 
     public RandomizedSet() {
-        list = new ArrayList<Integer>();
+        hashMap = new HashMap<Integer, Integer>();
+        arrayList = new ArrayList<Integer>();
+        random = new Random();
     }
-
+    
     public boolean insert(int val) {
-        if (!list.contains(val)) {
-            list.add(val);
+        if (!hashMap.containsKey(val)) {
+            arrayList.add(val);
+            hashMap.put(val, arrayList.size()-1);
             return true;
-        } else {
-            return false;
         }
-    }
 
+        return false;
+    }
+    
     public boolean remove(int val) {
-        if (list.contains(val)) {
-            HashSet<Integer> set = new HashSet<>(list);
-            set.remove(val);
-            list = new ArrayList<Integer>(set);
-            return true;
-        } else {
-            return false;
-        }
-    }
+        if (hashMap.containsKey(val)) {
+            Integer index = hashMap.get(val);
+            int size = arrayList.size();
+            Integer lastVal = arrayList.get(size-1);
 
+            hashMap.put(lastVal, index);
+            hashMap.remove(val);
+
+            arrayList.set(index, lastVal);
+            arrayList.remove(size-1);
+            
+            return true;
+        }
+
+        return false;
+    }
+    
     public int getRandom() {
-        int size = list.size();
-        Random random = new Random();
-        return list.get(random.nextInt(size));
+        int sum = arrayList.size();
+        int nextInt = random.nextInt(sum);
+        return arrayList.get(nextInt);
     }
 }
