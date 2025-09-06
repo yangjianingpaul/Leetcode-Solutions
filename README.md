@@ -101,6 +101,11 @@
 139. Word Break
 322. Coin Change
 300. Longest Increasing Subsequence
+706. Design HashMap
+295. Find Median from Data Stream
+146. LRU Cache
+208. Implement Trie (Prefix Tree)
+355. Design Twitter
 
 ### Easy Problems
 88. Merge Sorted Array
@@ -138,6 +143,7 @@
 9. Palindrome Number
 66. Plus One
 70. Climbing Stairs
+706. Design HashMap
 
 ### Medium Problems
 80. Remove Duplicates from Sorted Array II
@@ -203,9 +209,12 @@
 139. Word Break
 322. Coin Change
 300. Longest Increasing Subsequence
+146. LRU Cache
+208. Implement Trie (Prefix Tree)
+355. Design Twitter
 
 ### Hard Problems
-
+295. Find Median from Data Stream
 
 ### My Learning Focus Areas
 
