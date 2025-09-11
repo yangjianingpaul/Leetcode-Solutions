@@ -106,6 +106,15 @@
 146. LRU Cache
 208. Implement Trie (Prefix Tree)
 355. Design Twitter
+23. Merge k Sorted Lists
+25. Reverse Nodes in k-Group
+84. Largest Rectangle in Histogram
+239. Sliding Window Maximum
+42. Trapping Rain Water
+297. Serialize and Deserialize Binary Tree
+124. Binary Tree Maximum Path Sum
+76. Minimum Window Substring
+72. Edit Distance
 
 ### Easy Problems
 88. Merge Sorted Array
@@ -215,6 +224,15 @@
 
 ### Hard Problems
 295. Find Median from Data Stream
+23. Merge k Sorted Lists
+25. Reverse Nodes in k-Group
+84. Largest Rectangle in Histogram
+239. Sliding Window Maximum
+42. Trapping Rain Water
+297. Serialize and Deserialize Binary Tree
+124. Binary Tree Maximum Path Sum
+76. Minimum Window Substring
+72. Edit Distance
 
 ### My Learning Focus Areas
 

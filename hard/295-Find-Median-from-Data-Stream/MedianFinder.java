@@ -1,3 +1,10 @@
+/**
+ * Problem: 295. Find Median from Data Stream
+ * Difficulty: hard
+ * Approach: heap
+ * Time: O(n), Space: O(n)
+ */
+
 class MedianFinder {
 
     ArrayList<Integer> list1;
