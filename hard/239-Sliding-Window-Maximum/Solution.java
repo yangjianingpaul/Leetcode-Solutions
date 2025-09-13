@@ -8,31 +8,22 @@
 
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int left = 0;
-        ArrayList<Integer> window = new ArrayList<Integer>();
+        ArrayDeque<Integer> arrayDeque = new ArrayDeque<Integer>();
         int[] result = new int[nums.length - k + 1];
 
         for (int i = 0; i < nums.length; i++) {
-            if (i >= k) {
-                if (window.get(0) == nums[left]) {
-                    window.remove(0);
-                }
-
-                left++;
+            while (!arrayDeque.isEmpty() && arrayDeque.peekFirst() < i - k + 1) {
+                arrayDeque.pollFirst();
             }
 
-            for (int j = window.size() - 1; j >= 0; j--) {
-                if (window.get(j) < nums[i]) {
-                    window.removeLast();
-                } else {
-                    break;
-                }
+            while (!arrayDeque.isEmpty() && nums[arrayDeque.peekLast()] < nums[i]) {
+                arrayDeque.pollLast();
             }
 
-            window.add(nums[i]);
+            arrayDeque.offerLast(i);
 
             if (i >= k - 1) {
-                result[i + 1 - k] = window.get(0);
+                result[i - k + 1] = nums[arrayDeque.peekFirst()];
             }
         }
 

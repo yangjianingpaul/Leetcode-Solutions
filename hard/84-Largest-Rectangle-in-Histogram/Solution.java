@@ -1,64 +1,23 @@
- /**
+/**
  * Problem: 84. Largest Rectangle in Histogram
  * Difficulty: hard
- * Approach: iteration
+ * Approach: Monotonic Stack
  * Time: O(n), Space: O(n)
  */
 class Solution {
     public int largestRectangleArea(int[] heights) {
-        if (heights.length == 1) {
-            return heights[0];
-        }
+        Stack<Integer> stack = new Stack<Integer>();
+        int maxArea = 0;
 
-        if (heights.length == 0) {
-            return Integer.MIN_VALUE;
-        }
-
-        int min = Integer.MAX_VALUE;
-        int index = 0;
-        for (int i = 0; i < heights.length; i++) {
-            if (heights[i] < min) {
-                min = heights[i];
-                index = i;
+        for (int i = 0; i <= heights.length; i++) {
+            int currentHeight = (i == heights.length) ? 0 : heights[i];
+            while (!stack.isEmpty() && currentHeight < heights[stack.peek()]) {
+                int height = heights[stack.pop()];
+                int width = stack.isEmpty() ? i : i - stack.peek() - 1;
+                maxArea = Math.max(maxArea, height * width);
             }
+            stack.push(i);
         }
-
-        int leftBiger = index - 1, rightBiger = index + 1;
-        while (leftBiger >= 0) {
-            if (heights[leftBiger] > min) {
-                break;
-            }
-            leftBiger--;
-        }
-
-        while (rightBiger < heights.length) {
-            if (heights[rightBiger] > min) {
-                break;
-            }
-            rightBiger++;
-        }
-
-        int[] leftList = new int[0];
-        int[] rightList = new int[0];
-        int max = 0;
-
-        if (leftBiger >= 0 && rightBiger >= heights.length) {
-            leftList = Arrays.copyOfRange(heights, 0, leftBiger + 1);
-            return Math.max(min * heights.length, largestRectangleArea(leftList));
-        }
-
-        if (leftBiger < 0 && rightBiger < heights.length) {
-            rightList = Arrays.copyOfRange(heights, rightBiger, heights.length);
-            return Math.max(min * heights.length, largestRectangleArea(rightList));
-        }
-
-        if (leftBiger >= 0 && rightBiger < heights.length) {
-            leftList = Arrays.copyOfRange(heights, 0, leftBiger + 1);
-            rightList = Arrays.copyOfRange(heights, rightBiger, heights.length);
-            max = Math.max(largestRectangleArea(leftList), largestRectangleArea(rightList));
-            return Math.max(max, min * heights.length);
-        }
-
-        return min * heights.length;
+        return maxArea;
     }
 }

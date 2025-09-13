@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * }
  */
 
- /**
+/**
  * Problem: 23. Merge k Sorted Lists
  * Difficulty: hard
  * Approach: LinkedList
@@ -20,47 +20,27 @@ import java.util.ArrayList;
 
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode result = new ListNode();
-        if (lists.length == 0) {
-            return null;
-        }
 
-        if (lists.length == 1) {
-            return lists[0];
-        }
-
-        ListNode index = result;
-        boolean flag = true;
-
-        while (flag) {
-            int nonNullNum = 0;
-            int min = Integer.MAX_VALUE;
-            int minIndex = -1;
-
-            for (int i = 0; i < lists.length; i++) {
-                if (lists[i] != null) {
-                    nonNullNum++;
-                    if (lists[i].val < min) {
-                        minIndex = i;
-                        min = lists[i].val;
-                    }
-                }
-            }
-
-            if (nonNullNum == 0) {
-                return result.next;
-            } else if (nonNullNum == 1) {
-                index.next = lists[minIndex];
-                return result.next;
-            } else {
-                ListNode listNode = new ListNode();
-                listNode.val = min;
-                index.next = listNode;
-                index = listNode;
-                lists[minIndex] = lists[minIndex].next;
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<ListNode>((a, b) -> (a.val - b.val));
+        for (ListNode listNode : lists) {
+            if (listNode != null) {
+                minHeap.offer(listNode);
             }
         }
 
-        return result.next;
+        ListNode head = new ListNode();
+        ListNode currentNode = head;
+
+        while (!minHeap.isEmpty()) {
+            ListNode smallest = minHeap.poll();
+            currentNode.next = smallest;
+            currentNode = currentNode.next;
+            smallest = smallest.next;
+            if (smallest != null) {
+                minHeap.offer(smallest);
+            }
+        }
+
+        return head.next;
     }
 }
