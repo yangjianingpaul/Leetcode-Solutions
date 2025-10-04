@@ -115,6 +115,7 @@
 124. Binary Tree Maximum Path Sum
 76. Minimum Window Substring
 72. Edit Distance
+312. Burst Balloons
 
 ### Easy Problems
 88. Merge Sorted Array
@@ -233,6 +234,7 @@
 124. Binary Tree Maximum Path Sum
 76. Minimum Window Substring
 72. Edit Distance
+312. Burst Balloons
 
 ### My Learning Focus Areas
 
